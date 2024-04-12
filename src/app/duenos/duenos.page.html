@@ -1,0 +1,103 @@
+<ion-content [fullscreen]="true">
+  <ion-searchbar
+    [debounce]="1000"
+    (ionInput)="handleInput($event)"
+  ></ion-searchbar>
+
+  <ion-list>
+    <ion-grid>
+      <!-- Títulos -->
+      <ion-row class=>
+        <ion-col class="ion-text-center ion-padd" size="3">Dni</ion-col>
+        <ion-col class="ion-text-center" size="3">Apellido</ion-col>
+        <ion-col class="ion-text-center" size="3">Nombre</ion-col>
+        <ion-col class="ion-text-center">Abreviatura</ion-col>
+        <ion-col class="ion-text-center"></ion-col>
+      </ion-row>
+
+      <!-- Datos de los dueños -->
+      <ion-row *ngFor="let dueno of duenos() | filterOwners:query">
+        <ion-col class="ion-text-center" size="3">{{dueno.dni}}</ion-col>
+        <ion-col class="ion-text-center" size="3">{{dueno.apellido}}</ion-col>
+        <ion-col class="ion-text-center" size="3">{{dueno.nombre}}</ion-col>
+        <ion-col class="ion-text-center">{{dueno.abreviatura}}</ion-col>
+        <ion-col class="ion-text-center">
+          <ion-checkbox
+            (ionChange)="toggleSelection(dueno)"
+            justify="end"
+          ></ion-checkbox>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+  <ion-list *ngIf="addingOwner">
+    <ion-row>
+      <ion-col>
+        <ion-input
+          class="ion-text-center"
+          label="DNI"
+          labelPlacement="stacked"
+          [(ngModel)]="newOwner.dni"
+        ></ion-input>
+      </ion-col>
+
+      <ion-col>
+        <ion-input
+          class="ion-text-center"
+          label="Apellido"
+          labelPlacement="stacked"
+          [(ngModel)]="newOwner.apellido"
+        ></ion-input>
+      </ion-col>
+
+      <ion-col>
+        <ion-input
+          class="ion-text-center"
+          label="Nombre"
+          labelPlacement="stacked"
+          [(ngModel)]="newOwner.nombre"
+        ></ion-input
+      ></ion-col>
+      <ion-col>
+        <ion-input
+          class="ion-text-center"
+          label="Abreviatura"
+          labelPlacement="stacked"
+          [(ngModel)]="newOwner.abreviatura"
+        ></ion-input
+      ></ion-col>
+    </ion-row>
+    <ion-col>
+      <div style="display: flex; justify-content: center; gap: 10px">
+        <ion-button size="small" horizontal (click)="saveOwner()"
+          >Guardar</ion-button
+        >
+        <ion-button size="small" (click)="clearInputs()">Borrar</ion-button>
+      </div>
+    </ion-col>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button size="small" (click)="addOwner()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="caret-forward-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button size="small" (click)="addOwner()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="deleteSelectedOwners()">
+        <ion-icon size="small" name="trash-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [disabled]="confOwner" (click)="editOwners()">
+        <ion-icon name="cog-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

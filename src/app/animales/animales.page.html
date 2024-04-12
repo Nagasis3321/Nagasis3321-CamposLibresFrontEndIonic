@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>Dueño</ion-col>
+        <ion-col>Caravana</ion-col>
+        <ion-col>Pelaje</ion-col>
+        <ion-col>Edad</ion-col>
+        <ion-col>Sexo</ion-col>
+        <ion-col>Select</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item *ngFor="let animal of animales()">
+      <ion-grid>
+        <ion-row>
+          <ion-col justify="center">{{animal.dniDueno | dniDueno}} </ion-col>
+          <ion-col justify="center">{{animal.idCaravana}} </ion-col>
+          <ion-col justify="center" size="2">
+            {{animal.idPelaje | idPelaje}}</ion-col
+          >
+          <ion-col justify="center">{{animal.edad | titlecase}}</ion-col>
+          <ion-col justify="center">{{animal.sexo | titlecase}} </ion-col>
+          <ion-col> <ion-checkbox justify="end"></ion-checkbox></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="caret-forward-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="cog-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="globe"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-app>
+  <ion-menu contentId="main-content" type="reveal">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Campos Libres</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button fill="clear" [routerLink]="['/main']">Main</ion-button><br />
+      <ion-button fill="clear" [routerLink]="['/animales']">Animales</ion-button
+      ><br />
+      <ion-button fill="clear" [routerLink]="['/duenos']">Dueños</ion-button>
+      <br />
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Campos Libres</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
+</ion-app>
